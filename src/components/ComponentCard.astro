@@ -1,0 +1,95 @@
+---
+export interface Props {
+    imageAlt: string;
+    srcPng: string;
+    srcWebp: string;
+    livedemoUrl: string | null;
+    githubUrl: string | null;
+    title: string;
+    frontendStack: Array<string>;
+    backendStack: Array<string>;
+}
+
+const {
+    title,
+    srcPng,
+    srcWebp,
+    imageAlt,
+    livedemoUrl,
+    githubUrl,
+
+    frontendStack,
+    backendStack,
+} = Astro.props;
+---
+
+<div
+    class="flex flex-col bg-[#2f3238] min-[1024px]:w-[calc(100%/3-1rem)] min-[640px]:w-[calc(100%/2-1rem)] mx-2 my-2 pt-2 pb-4 rounded-md"
+>
+    <span class="ml-2 mt-4 font-bold mb-1">{title}</span>
+
+    <picture class="p-2 mb-4">
+        <source srcset={srcWebp} type="image/webp" />
+        <source srcset={srcPng} type="image/png" />
+        <img
+            class="flex w-full rounded-md aspect-video object-cover"
+            src={srcPng}
+            alt={imageAlt}
+        />
+    </picture>
+
+    {
+        (backendStack.length > 0 || frontendStack.length > 0) && (
+            <span class="pl-2 font-bold">Tech stack:</span>
+        )
+    }
+    {
+        frontendStack.length > 0 && (
+            <div class="flex flex-wrap my-1 px-2">
+                {frontendStack.map((e) => {
+                    return (
+                        <img
+                            class="mx-[1px]"
+                            src={e}
+                            alt={e.split("/")[2].split(".")[0] + " badge"}
+                        />
+                    );
+                })}
+            </div>
+        )
+    }
+
+    {
+        backendStack.length > 0 && (
+            <div class="flex flex-wrap my-1 px-2">
+                {backendStack.map((e) => {
+                    return (
+                        <img
+                            class="mx-[1px]"
+                            src={e}
+                            alt={e.split("/")[2].split(".")[0] + " badge"}
+                        />
+                    );
+                })}
+            </div>
+        )
+    }
+
+    <div class="flex items-center mt-auto pt-8">
+        <a
+            target="_blank"
+            href={livedemoUrl}
+            class="flex items-center bg-[#0aa574] w-fit ml-2 px-2 py-1 rounded-md font-bold mr-2 border-b-4 border-[#0c855e] hover:brightness-90 hover:scale-105 transition-all"
+        >
+            <img class="h-[18px] mr-2" src="/icons/rocket.svg" alt="" />
+            <span class="text-white"> Live demo</span>
+        </a>
+        <a target="_blank" class="ml-2" href={githubUrl}>
+            <img
+                class="h-6 w-6 object-contain hover:scale-110 hover:brightness-90 transition-all"
+                src="/social-media/github.svg"
+                alt="Github url"
+            />
+        </a>
+    </div>
+</div>

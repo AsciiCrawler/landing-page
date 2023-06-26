@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/LayoutBase.astro";
+import Card from "../components/ComponentCard.astro";
+import Profile from "../components/ComponentProfile.astro";
+import LayoutCard from "../layouts/LayoutCard.astro";
+---
+
+<Layout title="AsciiCrawler">
+    <main class="flex flex-col items-center">
+        <Profile />
+
+        <div class="my-8"></div>
+
+        <LayoutCard title="Pet projects">
+            <Card
+                title="Minimalist kanban"
+                srcPng="/websites/kanban.png"
+                srcWebp="/websites/kanban.webp"
+                imageAlt="Minimalist kanban Project"
+                frontendStack={[
+                    "/badges/nextjs.svg",
+                    "/badges/tailwind.svg",
+                    "/badges/mui.svg",
+                ]}
+                backendStack={["/badges/nestjs.svg", "/badges/aws.svg"]}
+                livedemoUrl="https://minimalist-kanban.asciicrawler.com/"
+                githubUrl="https://github.com/AsciiCrawler/minimalist-kanban-frontend"
+            />
+            <Card
+                title="This landing page"
+                srcPng="/websites/landing.png"
+                srcWebp="/websites/landing.webp"
+                imageAlt="This landing page"
+                frontendStack={["/badges/astro.svg", "/badges/tailwind.svg"]}
+                backendStack={[]}
+                livedemoUrl="https://asciicrawler.com/"
+                githubUrl="https://github.com/AsciiCrawler/landing-page"
+            />
+        </LayoutCard>
+    </main>
+</Layout>

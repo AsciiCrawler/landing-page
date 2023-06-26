@@ -1,0 +1,48 @@
+---
+export interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-DW8XPH650Z"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-DW8XPH650Z");
+        </script>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link href="https://asciicrawler.com" rel="canonical" />
+        <title>{title}</title>
+    </head>
+    <body>
+        <slot />
+    </body>
+</html>
+
+<style is:global>
+    body {
+        background-color: #191b1f;
+    }
+
+    span,
+    div,
+    h1,
+    h2 {
+        color: white;
+    }
+</style>
